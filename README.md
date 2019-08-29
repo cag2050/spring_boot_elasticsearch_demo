@@ -33,7 +33,7 @@ spring.data.elasticsearch.cluster-name=docker-cluster
 ```
 3.下载谷歌浏览器扩展程序：https://chrome.google.com/webstore/detail/elasticsearch-head/ffmkiejjmecolpfloofpjologoblkegm ，并在浏览器中打开
 
-4.测试 controller/BlogController.java 中的各个接口，并在 elasticsearch-head 浏览器扩展程序中查看结果
+4.测试 controller/BlogController.java 中的各个接口（使用 Postman 或 [SwaggerUI](http://localhost:8080/swagger-ui.html)(推荐)），并在 elasticsearch-head 浏览器扩展程序中查看结果
 
 ### 参考
 
