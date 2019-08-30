@@ -35,6 +35,9 @@ spring.data.elasticsearch.cluster-name=docker-cluster
 
 4.测试 controller/BlogController.java 中的各个接口（使用 Postman 或 [SwaggerUI](http://localhost:8080/swagger-ui.html)(推荐)），并在 elasticsearch-head 浏览器扩展程序中查看结果
 
+### 注意点
+1. 添加记录时，如果 blogModel 实体参数中没有 id 字段，即数据没有自然的 ID， Elasticsearch 可以帮我们自动生成 ID；此时，blogModel 中的 id 为 null，_id 为自动生成的 ID，查询、更新、删除时，可以使用此自动生成的 ID。参考：https://www.elastic.co/guide/cn/elasticsearch/guide/cn/index-doc.html#index-doc
+
 ### 参考
 
 参考资料 | 网址

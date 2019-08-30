@@ -17,11 +17,14 @@ public class BlogController {
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @PostMapping("/blog/add")
+    // 如果 blogModel 实体参数中没有 id 字段，即数据没有自然的 ID， Elasticsearch 可以帮我们自动生成 ID；此时，blogModel 中的 id 为 null，_id 为自动生成的
+    // ID，查询、更新、删除时，可以使用此自动生成的 ID。
+    // 参考：https://www.elastic.co/guide/cn/elasticsearch/guide/cn/index-doc.html#index-doc
     public void add(@RequestBody BlogModel blogModel) {
         blogRepository.save(blogModel);
     }
 
-    @GetMapping("/get/{id}")
+    @PostMapping("/get/{id}")
     public BlogModel getBlogById(@PathVariable String id) {
         Optional<BlogModel> blogModelOptional = blogRepository.findById(id);
         if (blogModelOptional.isPresent()) {
