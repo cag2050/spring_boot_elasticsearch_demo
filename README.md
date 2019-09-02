@@ -39,7 +39,9 @@ spring.data.elasticsearch.cluster-name=docker-cluster
 1.参考：http://blogspring.cn/view/391
 
 ### 步骤四：全局异常处理
-1.参考：http://blogspring.cn/view/397
+1.知识点：@RestControllerAdvice、@ExceptionHandler
+
+2.参考：http://blogspring.cn/view/397
 
 ### 注意点
 1. 添加记录时，如果 blogModel 实体参数中没有 id 字段，即数据没有自然的 ID， Elasticsearch 可以帮我们自动生成 ID；此时，blogModel 中的 id 为 null，_id 为自动生成的 ID，查询、更新、删除时，可以使用此自动生成的 ID。参考：https://www.elastic.co/guide/cn/elasticsearch/guide/cn/index-doc.html#index-doc

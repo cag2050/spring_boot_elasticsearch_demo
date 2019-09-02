@@ -7,13 +7,18 @@ import com.cag2050.spring_boot_elasticsearch_demo.repository.BlogRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -32,11 +37,11 @@ public class BlogController {
             List<ObjectError> list = bindingResult.getAllErrors();
             int len = list.size();
             for (int i = 0; i < len; i++) {
-                FieldError fieldError = (FieldError)list.get(i);
+                FieldError fieldError = (FieldError) list.get(i);
                 log.error("对象 " + fieldError.getObjectName() + " 的字段 " + fieldError.getField() + "：" + fieldError.getDefaultMessage());
                 return new JsonResult<>("someCode",
                         "对象" + fieldError.getObjectName() + "的字段" + fieldError.getField() +
-                        "：" + fieldError.getDefaultMessage());
+                                "：" + fieldError.getDefaultMessage());
             }
         }
         blogRepository.save(blogModel);
@@ -64,11 +69,29 @@ public class BlogController {
     }
 
     @PostMapping("/blog/delete/{id}")
-    public String deleteById (@PathVariable String id) {
+    public String deleteById(@PathVariable String id) {
         if (StringUtils.isEmpty(id)) {
             return "error";
         }
         blogRepository.deleteById(id);
         return "success";
+    }
+
+    @PostMapping("/blog/search")
+    public JsonResult<Object> getByTitle(@RequestParam int currentPage, @RequestParam String title,
+                                         @RequestParam(required = false, defaultValue = "1") int pageSize) {
+        PageRequest pageRequest = PageRequest.of(currentPage - 1, pageSize);
+        Page<BlogModel> pages = blogRepository.findByTitle(title, pageRequest);
+        log.info(pages);
+        long totalElements = pages.getTotalElements();
+        long totalPages = pages.getTotalPages();
+        List<BlogModel> list = pages.getContent();
+        Map map = new HashMap<String, Object>();
+        map.put("totalElements", totalElements);
+        map.put("totalPages", totalPages);
+        map.put("pageSize", pageSize);
+        map.put("currentPage", currentPage);
+        map.put("list", list);
+        return new JsonResult<>(map);
     }
 }
