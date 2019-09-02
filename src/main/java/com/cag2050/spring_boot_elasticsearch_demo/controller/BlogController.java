@@ -80,6 +80,7 @@ public class BlogController {
     @PostMapping("/blog/search")
     public JsonResult<Object> getByTitle(@RequestParam int currentPage, @RequestParam String title,
                                          @RequestParam(required = false, defaultValue = "1") int pageSize) {
+        // JPA 中，page是从0开始，不是从1开始；因此，将用户输入的从1开始的page页码减1；
         PageRequest pageRequest = PageRequest.of(currentPage - 1, pageSize);
         Page<BlogModel> pages = blogRepository.findByTitle(title, pageRequest);
         log.info(pages);

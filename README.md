@@ -43,6 +43,13 @@ spring.data.elasticsearch.cluster-name=docker-cluster
 
 2.参考：http://blogspring.cn/view/397
 
+### 步骤五：Spring Data JPA 分页
+1.知识点：PageRequest、Page、Pageable
+
+2.文件网址：[@PostMapping("/blog/search")](https://github.com/cag2050/spring_boot_elasticsearch_demo/blob/5c05052ab6c77d18326befb96c09e2de3e21ba73/src/main/java/com/cag2050/spring_boot_elasticsearch_demo/controller/BlogController.java#L80)
+
+3.参考：书籍《Spring Boot 2 精髓：从构建小系统到架构分布式大系统》第13章
+
 ### 注意点
 1. 添加记录时，如果 blogModel 实体参数中没有 id 字段，即数据没有自然的 ID， Elasticsearch 可以帮我们自动生成 ID；此时，blogModel 中的 id 为 null，_id 为自动生成的 ID，查询、更新、删除时，可以使用此自动生成的 ID。参考：https://www.elastic.co/guide/cn/elasticsearch/guide/cn/index-doc.html#index-doc
 
@@ -53,3 +60,4 @@ spring.data.elasticsearch.cluster-name=docker-cluster
 Elasticsearch实战篇——Spring Boot整合ElasticSearch | https://segmentfault.com/a/1190000018625101
 学习SpringBoot（二）：Spring Boot 返回 JSON 数据及数据封装 | http://blogspring.cn/view/391
 学习SpringBoot（八）：Spring Boot 中的全局异常处理 | http://blogspring.cn/view/397
+书籍《Spring Boot 2 精髓：从构建小系统到架构分布式大系统》，第13章：Elasticsearch，第3.4.4节：编写Controller | 
