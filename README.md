@@ -43,3 +43,4 @@ spring.data.elasticsearch.cluster-name=docker-cluster
 参考资料 | 网址
 --- | ---
 Elasticsearch实战篇——Spring Boot整合ElasticSearch | https://segmentfault.com/a/1190000018625101
+学习SpringBoot（二）：Spring Boot 返回 JSON 数据及数据封装 | http://blogspring.cn/view/391

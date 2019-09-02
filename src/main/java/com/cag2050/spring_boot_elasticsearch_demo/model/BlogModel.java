@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,6 +17,7 @@ public class BlogModel implements Serializable {
     @Id
     private String id;
 
+    @Size(min = 3, max = 10)
     private String title;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
