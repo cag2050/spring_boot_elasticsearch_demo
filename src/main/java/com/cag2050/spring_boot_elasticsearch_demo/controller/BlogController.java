@@ -1,7 +1,7 @@
 package com.cag2050.spring_boot_elasticsearch_demo.controller;
 
 import com.cag2050.spring_boot_elasticsearch_demo.model.BlogModel;
-import com.cag2050.spring_boot_elasticsearch_demo.model.JsonResult;
+import com.cag2050.spring_boot_elasticsearch_demo.util.JsonResult;
 import com.cag2050.spring_boot_elasticsearch_demo.repository.BlogRepository;
 
 import org.apache.commons.logging.Log;

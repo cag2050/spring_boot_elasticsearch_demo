@@ -1,4 +1,4 @@
-package com.cag2050.spring_boot_elasticsearch_demo.model;
+package com.cag2050.spring_boot_elasticsearch_demo.util;
 
 // 参考：http://blogspring.cn/view/391
 public class JsonResult<T> {
